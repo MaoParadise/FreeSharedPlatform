@@ -1,0 +1,18 @@
+.default-dialog {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    box-shadow: none;
+    border: 2px rgba(58, 212, 44, 0.8) solid;
+    background: rgba(85, 191, 75, 0.8) !important;
+    color: #fff !important;
+    padding: 20px;
+    text-align: justify;
+  }
+  
+  .mat-dialog-container h1{
+    color: #ec971f !important;
+  }
+  
+  .cdk-overlay-dark-backdrop {
+    background: transparent;
+  }

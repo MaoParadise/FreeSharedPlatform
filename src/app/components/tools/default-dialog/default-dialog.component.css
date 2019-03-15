@@ -1,0 +1,14 @@
+.default-dialog {
+    box-shadow: none;
+    background: rgba(26, 27, 27, 0.95) !important;
+    color: #ec971f !important;
+    padding: 20px;
+  }
+  
+  .mat-dialog-container h1{
+    color: #ec971f !important;
+  }
+  
+  .cdk-overlay-dark-backdrop {
+    background: transparent;
+  }

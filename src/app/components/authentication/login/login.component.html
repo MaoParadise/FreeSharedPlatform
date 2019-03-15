@@ -1,0 +1,19 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+        <form class="form-box animated fadeInUp">
+            <h1> Sign in </h1>
+            <input type="text" [(ngModel)]="user.email"  name="user" placeholder="Usuario">
+            <input type="password" [(ngModel)]="user.password" name="password" placeholder="contraseña">
+            <button (click)="verifyUser()" class="btn-submit">
+                login
+            </button>
+            <p><a routerLink="/register"> ¿Aún no tiene una cuenta? </a> </p>
+            <p><a routerLink="/"> ¿Ha olvidado sus datos? </a> </p>
+        </form>
+    </div>
+   
+  </div>
+</div>
+
+

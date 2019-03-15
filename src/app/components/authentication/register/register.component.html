@@ -1,0 +1,23 @@
+<div class="container-fluid">
+  <div class="row text-center justify-content-md-center">
+    <div class="col-md-8">
+      <form class="form-box animated fadeInUp">
+        <h1> REGISTRO </h1>
+        <input type="email" [(ngModel)]="user.email" name="email" placeholder="Email">
+        <small class="form-text text-muted"></small>
+        <input type="text" [(ngModel)]="user.user" name="user" placeholder="Usuario">
+        <small class="form-text text-muted"></small>
+        <input type="password" [(ngModel)]="user.password" name="password" placeholder="Contraseña">
+        <small class="form-text text-muted"></small>
+        <input type="password" [(ngModel)]="rePassword" name="rePassword" placeholder="Repita contraseña">
+        <small class="form-text text-muted"></small>
+        <input type="text" [(ngModel)]="user.publicName" name="publicName" placeholder="Nombre Publico">
+        <small class="form-text text-muted"> ↑ Este es el nombre que verán todos los usuarios, si este espacio queda en blanco su nombre publico será remplazado por su nombre de usuario </small>
+        <button (click)="registerLocalUser()" class="btn-submit">
+            REGISTRAR
+        </button>
+        <p><a routerLink="/login"> ¿Ya tiene una cuenta en el sitio? </a> </p>
+      </form>
+    </div>
+  </div>
+</div>

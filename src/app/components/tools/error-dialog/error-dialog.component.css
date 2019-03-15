@@ -1,0 +1,18 @@
+.error-dialog {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    box-shadow: none;
+    border: 2px rgba(255, 8, 0, 0.8) solid;
+    background: rgba(228, 35, 28, 0.8) !important;
+    color: #000000 !important;
+    padding: 20px;
+    text-align: justify;
+  }
+  
+  .mat-dialog-container h1{
+    color: #ec971f !important;
+  }
+  
+  .cdk-overlay-dark-backdrop {
+    background: transparent;
+  }

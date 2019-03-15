@@ -1,1 +1,73 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+
+body{
+  background: #ff8008; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #ff8008, #ffc837); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ff8008, #ffc837); 
+}
+
+a {
+    color: #ccc !important;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+a:hover{
+    color: #ccc !important;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.btn-warning {
+    color: #fff;
+    background: #f46b45; 
+    background: -webkit-linear-gradient(to right, #f46b45, #eea849); 
+    background: linear-gradient(to right, #f46b45, #eea849);
+    border-color: #f0ad4e;
+  }
+  
+  .btn-warning:hover {
+    color: #fff;
+    background-color: #ed9d2b;
+    border-color: #ec971f;
+  }
+  
+  .btn-warning:focus, .btn-warning.focus {
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(242, 185, 105, 0.5);
+            box-shadow: 0 0 0 0.2rem rgba(242, 185, 105, 0.5);
+  }
+  
+  .btn-warning.disabled, .btn-warning:disabled {
+    color: #fff;
+    background-color: #f0ad4e;
+    border-color: #f0ad4e;
+  }
+  
+  .btn-warning:not(:disabled):not(.disabled):active, .btn-warning:not(:disabled):not(.disabled).active,
+  .show > .btn-warning.dropdown-toggle {
+    color: #fff;
+    background-color: #ec971f;
+    border-color: #ea9214;
+  }
+  
+  .btn-warning:not(:disabled):not(.disabled):active:focus, .btn-warning:not(:disabled):not(.disabled).active:focus,
+  .show > .btn-warning.dropdown-toggle:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(242, 185, 105, 0.5);
+            box-shadow: 0 0 0 0.2rem rgba(242, 185, 105, 0.5);
+  }
+  
+ 
+  .mat-dialog-container{
+    padding: 0px !important;
+  }
+
+  .cdk-overlay-dark-backdrop {
+    background: transparent;
+  }
+  .mat-dialog-container {
+    box-shadow: none;
+  }

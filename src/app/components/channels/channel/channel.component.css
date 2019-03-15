@@ -1,0 +1,70 @@
+.container-fluid{
+    margin: 0;
+   }
+   
+   .content-list{
+       background: #161515;
+       
+   }
+   
+   .outstanding{
+       position: fixed;
+       overflow: hidden;
+       left: 0;
+       width: 100%;
+       top: 0;
+       z-index: -1;
+   }
+   
+   
+   @media only screen and  (max-width: 1280px) {
+       .outstanding{
+           width: 1366px;
+           height: 780px;
+           overflow: hidden;
+       }
+   }
+   
+   @media (min-width: 721px) and (max-width: 940px) {
+       .outstanding{
+           left: -20%;
+           overflow: hidden;
+       }
+   }
+   
+   @media only screen and  (max-width: 720px) {
+       .outstanding{
+           left: -45%;
+           overflow: hidden;
+       }
+   }
+   
+   
+   
+   .information{
+       padding: 20px;
+       background-color: rgba(0,0,0,0.4);
+       border-radius: 3px;
+       overflow: auto;
+       color: #fff;
+       text-align: justify;
+       margin-top: 20px; 
+   }
+   
+   .information > h2{
+       color: #fff;
+       text-align: center;
+   }
+   
+   .information > p {
+       margin: 20px;
+   }
+   
+   .information::-webkit-scrollbar { 
+       width: 10px;
+   }
+   
+   .principalOptions{
+       width: 100%;
+   }
+   
