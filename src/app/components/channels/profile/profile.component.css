@@ -1,0 +1,71 @@
+
+.profile-background{
+    padding: 40px; 
+    background: -moz-repeating-linear-gradient(-3deg, #343a40 0, #343a40 40%, #2c2d2e 40.4%, #2c2d2e 100%);
+    background: -webkit-repeating-linear-gradient(-3deg, #343a40 0, #343a40 40%, #2c2d2e 40.4%, #2c2d2e 100%); 
+    background:  repeating-linear-gradient(-3deg, #343a40 0, #343a40 40%, #2c2d2e, 40.4%, #2c2d2e 100%)
+}
+
+.profile-head{
+    text-align: center;
+    height: 240px;
+}
+
+.profile-head .profile-head-info{
+    position: absolute;
+    z-index: 2;
+    float: center;
+    top: 120px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    text-shadow:
+    -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.profile-head .profile-head-info h1,
+.profile-head .profile-head-info h4{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: #fff;
+}
+
+.img-profile{
+    position: absolute;
+    z-index: 1;
+    right: 20px;
+}
+
+
+/* Information section */
+.profile-information{
+    padding: 40px;
+    background: rgba(44, 45, 46, 0.95);
+}
+
+.profile-information .activity,
+.profile-information .status{
+    margin-bottom: 25px;
+}
+
+.profile-information .activity h4,
+.profile-information .status h4{
+    color: #fff;
+    text-align: center;
+}
+
+.release{
+    background: rgba(96, 97, 97, 0.8);
+    color: #fff;
+    padding: 20px;
+    text-align: justify;
+    border-radius: 15px !important; 
+    -webkit-box-shadow: -2px 0px 31px -5px rgba(0,0,0,1);
+    -moz-box-shadow: -2px 0px 31px -5px rgba(0,0,0,1);
+    box-shadow: -2px 0px 31px -5px rgba(0,0,0,1);
+    margin-top: 15px; 
+}

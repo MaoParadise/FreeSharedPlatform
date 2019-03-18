@@ -7,6 +7,8 @@ import { TestComponent } from './components/testing/test/test.component';
 import { ProfileComponent } from './components/channels/profile/profile.component';
 import { AuthGuard } from './guards/auth.guard';
 import { SessionGuard } from './guards/session.guard';
+import { NotFoundComponent } from './components/channels/not-found/not-found.component';
+import { DashboardComponent } from './components/channels/dashboard/dashboard.component';
 
 const routes: Routes = [{
   path: '',
@@ -32,9 +34,21 @@ const routes: Routes = [{
   canActivate: [AuthGuard]
 },
 {
-  path: 'profile',
+  path: 'profile/:id',
   component: ProfileComponent,
+},
+{
+  path: 'dashboard/:section',
+  component: DashboardComponent,
   canActivate: [AuthGuard]
+},
+{
+  path: 'not-found',
+  component: NotFoundComponent
+},
+{
+  path: '**',
+  redirectTo: 'not-found'
 }];
 
 @NgModule({

@@ -30,8 +30,16 @@ export class UserService {
     });
   }
 
-  getUser(_id: string){
-    return this.http.get(`${this.API_URI}/user/${_id}`);
+  getCurrentUser(){
+    return this.http.post(`${this.API_URI}/user/current`,{});
+  }
+
+  editUser(publicName: string, email: string, urlImage: string ){
+    return this.http.put(`${this.API_URI}/user`,{
+      email: email,
+      publicName: publicName,
+      urlProfile: urlImage
+    })
   }
 
 }

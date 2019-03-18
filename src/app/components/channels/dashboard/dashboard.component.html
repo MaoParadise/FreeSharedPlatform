@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 dashboard-main">
+      <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
+        <li class="nav-item" (click)="changeProfile()">
+            <a class="nav-link pl-2" routerLink="/dashboard/profile"><i class="far fa-user-circle"></i> Mi Perfil </a>
+        </li>
+        <li class="nav-item" (click)="changeLibrary()">
+            <a class="nav-link pl-2" routerLink="/dashboard/library"><i class="fas fa-video"></i> Libreria </a>
+        </li>
+        <li class="nav-item" (click)="changeSettings()">
+            <a class="nav-link pl-2" routerLink="/dashboard/settings"><i class="fas fa-cogs"></i> Configuraciones </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link pl-2" routerLink="/dashboard/history"><i class="fas fa-landmark"></i> Mi Historia </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link pl-2" routerLink="/dashboard/social"><i class="far fa-comment-alt"></i> Redes Sociales </a>
+        </li>
+    </ul>
+    </div>
+
+    <!-- options of the Dashboard -->
+    <div class="col-md-10 dashboard-information">
+      <div *ngIf="this.option == 'profile'">
+          <app-dash-profile></app-dash-profile>
+      </div>
+      <div *ngIf="this.option == 'library'">
+          <app-dash-library></app-dash-library>
+      </div>
+      <div *ngIf="this.option == 'settings'">
+          <app-dash-settings></app-dash-settings>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>

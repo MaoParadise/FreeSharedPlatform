@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class SetupService {
 
   data: any;
-  API_URI: string = 'https://bako-app.herokuapp.com/api';
+  API_URI: string = 'http://192.168.0.18:3000/api';
 
   bodyCredentials: any = {
     observe: 'body',
@@ -77,6 +77,14 @@ export class SetupService {
     }
   }
 
+  getCurrentUser(){
+    if(localStorage.getItem('-bdI-') == null){
+      return 'invalid-user';
+    }else{
+      return JSON.parse(localStorage.getItem('-bdI-'))._crtU
+    }
+  }
+
   getCurrentEmail(){
     if(localStorage.getItem('-bdI-') == null){
       return 'no-email'
@@ -84,6 +92,12 @@ export class SetupService {
       return JSON.parse(localStorage.getItem('-bdI-'))._email
     }
     
+  }
+
+  setCurrentImg(_crtImg: string){
+    let  user = JSON.parse(localStorage.getItem('-bdI-'));
+    user._crtImg = _crtImg;
+    localStorage.setItem('-bdI-', JSON.stringify(user));
   }
   
   getCurrentImg(){

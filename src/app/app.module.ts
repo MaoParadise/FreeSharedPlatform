@@ -27,6 +27,10 @@ import { ProfileComponent } from './components/channels/profile/profile.componen
 import { AuthenticationService } from './services/authentication/authentication.service';
 import { AuthGuard } from './guards/auth.guard';
 import { SessionGuard } from './guards/session.guard';
+import { DashboardComponent } from './components/channels/dashboard/dashboard.component';
+import { DashLibraryComponent } from './components/channels/dash-library/dash-library.component';
+import { DashProfileComponent } from './components/channels/dash-profile/dash-profile.component';
+import { DashSettingsComponent } from './components/channels/dash-settings/dash-settings.component';
 ;
 
 @NgModule({
@@ -41,7 +45,11 @@ import { SessionGuard } from './guards/session.guard';
     ProfileComponent,
     DefaultDialogComponent,
     ErrorDialogComponent,
-    SuccessDialogComponent
+    SuccessDialogComponent,
+    DashboardComponent,
+    DashLibraryComponent,
+    DashProfileComponent,
+    DashSettingsComponent
   ],
   imports: [
     BrowserModule,

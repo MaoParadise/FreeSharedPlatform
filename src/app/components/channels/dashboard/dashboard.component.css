@@ -1,0 +1,27 @@
+.dashboard-main{
+    background: #262627;
+    padding: 0;
+}
+
+.dashboard-main ul{
+    overflow: auto;
+}
+
+.dashboard-main ul .nav-item:hover{
+    background: rgba(44, 45, 46, 0.95);
+} 
+.dashboard-main ul .nav-item{
+    font-size: 13px;
+    width: 100%;
+    padding: 20px;
+}
+/* background: rgba(44, 45, 46, 0.95); */
+
+.dashboard-information{
+    text-align: center;
+    padding-top: 40px;
+    height: auto;
+    background: #fff;
+}
+
+

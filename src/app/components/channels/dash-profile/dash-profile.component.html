@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-8 edit-profile">
+    <form class="">
+    <h4> Nombre Publico </h4>
+    <input class="form-control" type="text" [(ngModel)]="user.publicName" pattern="[A-Za-z0-9_-]{1,15}" name="publicName">
+    <hr>
+    <h4> Email </h4>
+    <input class="form-control" type="email" [(ngModel)]="user.email" name="email">
+    <hr>
+    <h4> URL IMAGEN </h4>
+    <input class="form-control" type="text" [(ngModel)]="user.urlProfile" name="urlProfile">
+    <hr>
+    <button class="btn btn-primary btn-profile" (click)="saveUser()"> Guardar </button>
+    <br>
+    </form>
+  </div>
+  <div class="col-md-4">
+      <img width="230px" height="230px" [src]="user.urlProfile == 'no-profile' ? '/assets/default/profile/no-image.png' : user.urlProfile" class="img-profile img-fluid rounded-circle" alt="Responsive image">
+    </div>
+</div>

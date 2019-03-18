@@ -5,12 +5,10 @@
 
 
 body{
-  background: #ff8008; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #ff8008, #ffc837); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #ff8008, #ffc837); 
+  background: #262627 !important; 
 }
 
-a {
+a { 
     color: #ccc !important;
     text-decoration: none;
     background-color: transparent;

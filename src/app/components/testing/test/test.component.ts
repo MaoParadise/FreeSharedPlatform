@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material';
 import { DefaultDialogComponent } from '../../tools/default-dialog/default-dialog.component';
 import { ErrorDialogComponent } from '../../tools/error-dialog/error-dialog.component';
 import { SuccessDialogComponent } from '../../tools/success-dialog/success-dialog.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-test',
@@ -20,6 +21,7 @@ export class TestComponent implements OnInit {
 
   constructor(
     private _setup: SetupService,
+    private http: HttpClient,
     private _userService: UserService,
     private router: Router,
     public dialog: MatDialog // tambien esto 
@@ -28,7 +30,14 @@ export class TestComponent implements OnInit {
   
   ngOnInit() {
    this._setup.validateCredentials();
-
+   this.http.get(`http://192.168.0.18:3000/api/user/auth/session`).subscribe(
+    (res)=>{
+      console.log(res);
+    },
+    (err)=>{
+      console.log(err);
+    }
+  )
     // this.information = JSON.parse(localStorage.getItem('-bdI-'))._email;
   }
 

@@ -13,6 +13,7 @@ export class NavigationComponent implements OnInit {
   auto: boolean = this._authService.loggeInInformation();
   CurrentUser = '';
   CurrentProfileImage = '';
+  user = '';
 
   constructor(
     private _authService: AuthenticationService,
@@ -23,6 +24,7 @@ export class NavigationComponent implements OnInit {
   ngOnInit() {
     this.CurrentUser = this._setup.getCurrentUserOrPublicName(true);
     this.CurrentProfileImage = this._setup.getCurrentImg();
+    this.user = this._setup.getCurrentUser();
   }
 
   logout(){
@@ -36,6 +38,10 @@ export class NavigationComponent implements OnInit {
         window.location.href = "/login";
       }
     )
+  }
+
+  showProfile(){
+    this.router.navigate([`/profile/${this.user}`])
   }
 
 }

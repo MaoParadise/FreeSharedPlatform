@@ -1,0 +1,17 @@
+.edit-profile h4{
+    text-align: left;
+}
+
+.edit-profile .btn-profile{
+    float: right;
+    margin-left: 5px; 
+    margin-bottom: 50px;
+}
+
+.form-control{
+    border: 2px solid #ced4da !important;
+}
+
+.img-profile{
+    margin-top: 30px;
+}
