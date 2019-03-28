@@ -1,0 +1,23 @@
+<div id="modalCHAPTER" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="row stepbar">
+            <div class="col-md-12">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <i class="fas fa-times-circle"></i>
+                </button>
+            </div>
+          </div>
+          
+        </div>
+        <div class="modal-body">
+            <input class="form-control" type="file" (change)="onFileSelected($event)">
+            <button class="btn btn-primary" (click)="onUpload()"> Upload </button>
+            <div class="alert alert-danger fade show" role="alert">
+                
+            </div>
+        </div>
+      </div>
+    </div>
+</div>

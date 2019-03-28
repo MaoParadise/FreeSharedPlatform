@@ -9,6 +9,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { TokenInterceptorService } from './services/token/token-interceptor.service';
 
 
+//External
+import { ClickOutsideModule } from 'ng4-click-outside';
+
 //Angular Material
 import { MaterialModule } from './tools/materia';
 import { DefaultDialogComponent } from './components/tools/default-dialog/default-dialog.component';
@@ -31,6 +34,9 @@ import { DashboardComponent } from './components/channels/dashboard/dashboard.co
 import { DashLibraryComponent } from './components/channels/dash-library/dash-library.component';
 import { DashProfileComponent } from './components/channels/dash-profile/dash-profile.component';
 import { DashSettingsComponent } from './components/channels/dash-settings/dash-settings.component';
+import { ModalTemplateComponent } from './components/channels/dash-library/modals/modal-template/modal-template.component';
+import { AddMediaComponent } from './components/channels/dash-library/modals/add-media/add-media.component';
+import { EditChapterComponent } from './components/channels/dash-library/modals/edit-chapter/edit-chapter.component';
 ;
 
 @NgModule({
@@ -49,7 +55,10 @@ import { DashSettingsComponent } from './components/channels/dash-settings/dash-
     DashboardComponent,
     DashLibraryComponent,
     DashProfileComponent,
-    DashSettingsComponent
+    DashSettingsComponent,
+    ModalTemplateComponent,
+    AddMediaComponent,
+    EditChapterComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +66,8 @@ import { DashSettingsComponent } from './components/channels/dash-settings/dash-
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ClickOutsideModule
   ],
   entryComponents:[
     DefaultDialogComponent,

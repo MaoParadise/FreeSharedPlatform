@@ -1,0 +1,158 @@
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1060 !important;
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+}
+
+
+.modal-content {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    color: #fff;
+    pointer-events: auto;
+    background-color: rgba(26, 26, 26, 0.9);
+    background-clip: padding-box;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0;
+    outline: 0;
+  }
+
+  .fa-times-circle{
+    color: #fff;
+  }
+
+  .stepbar{
+      width: 100%;
+  }
+
+  .progressbar{
+    counter-reset: step;
+  }
+
+  .progressbar li{
+      list-style-type: none;
+      float: left;
+      width: 33.33%;
+      position: relative;
+      text-align: center;
+      z-index: 1;
+  }
+
+  .qualityRadio{
+    cursor: pointer;
+    list-style-type: none;
+    float: left;
+    width: 33.33%;
+    position: relative;
+    text-align: center;
+}
+
+  .progressbar li:before{
+      content: counter(step);
+      counter-increment: step;
+      width: 30px;
+      height: 30px;
+      line-height: 30px; 
+      border: 1px solid #ddd;
+      display: block;
+      text-align: center;
+      margin: 0 auto 10px auto; 
+      border-radius: 50%;
+      background-color: #343a40; 
+      z-index: 150000;
+
+  }
+
+  
+  
+  .progressbar li:after{
+      content: '';
+      position: absolute; 
+      width: 100%;
+      height: 1px;
+      background-color: #ddd;
+      top: 15px;
+      left: -39%;
+      z-index: -2;
+  }
+
+  .progressbar li:first-child::after {
+      content: none; 
+  }
+
+  .progressbar li.active{
+      color: #4BBF73;
+  }
+  .progressbar li.active:before{
+      border-color: #4BBF73;  
+  }
+  .progressbar li.active + li:after{
+    background-color: #4BBF73;
+  }
+
+  .form-group{
+      position: relative;
+  }
+
+  .form-search{
+      border-bottom: 1px solid rgb(0, 0, 0, 0.5);
+  }
+
+ .state-container-dropdown{
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      max-height: 300px;
+      background: #f6f6f6;
+      overflow-y: auto;
+  }
+  .state{
+      padding: 10px;
+      font-family: sans-serif;
+      color: #1F9BCF;
+  }
+
+  .state:hover{
+      background: #c2c2c2;
+  }
+
+  h4{
+      text-align: center;
+      color: #fff;
+  }
+
+  p{
+      text-align: justify;
+  }
+
+.alert-danger {
+    color: #fff;
+    background-color: #e71d16;
+    border-color: #6e1d1a;
+    display: none;
+}
+
+.alert-success {
+    color: #fff;
+    background-color: #4BBF73;
+    border-color: rgb(101, 155, 120);
+    display: none;
+  }
+
+  .embed{
+      border: 1px solid #fff;
+  }

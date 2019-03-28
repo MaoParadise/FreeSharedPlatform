@@ -1,6 +1,72 @@
+
+.library-header{
+    padding-bottom: 15px;
+}
+
+.library-header-btn{
+    text-align: right;
+    margin-bottom: 5px; 
+}
+.library-header-btn .btn-primary{
+    border: 2px solid #ced4da !important;
+}
+
+.btn-light{
+    border: 2px solid #1a1a1a !important;
+}
 .card{
     -webkit-box-shadow: 2px 2px 26px -6px rgba(0,0,0,0.75);
     -moz-box-shadow: 2px 2px 26px -6px rgba(0,0,0,0.75);
     box-shadow: 2px 2px 26px -6px rgba(0,0,0,0.75);
     margin-bottom: 25px;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
 }
+
+
+.card-body{
+    background: #1a1a1a;
+    color: #919aa1 !important;
+}
+
+.icons{
+    color:  #e9edf1;
+    position: absolute;
+    margin-left: 8px; 
+    font-size: 20px;
+    z-index: 2;
+    text-align: center;
+    width: 90%;
+    cursor: pointer;
+}
+
+.icons-confirmation{
+    position: absolute;
+    margin-left: 2px; 
+    font-size: 25px;
+    z-index: 1;
+    text-align: right;
+    width: 90%;
+}
+
+.icons-confirmation .fa-check-circle{
+    color: rgba(75, 191, 115, 0.5);
+    text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+}
+
+.icons-confirmation .fa-exclamation-triangle{
+    color: rgba(253, 250, 63, 0.8);
+    text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+}
+
+.form-control{
+    border: 2px solid #ced4da !important;
+}
+
+.fa-cogs:hover,
+.fa-edit:hover{
+    color: #1a1a1a;
+    text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
+}
+

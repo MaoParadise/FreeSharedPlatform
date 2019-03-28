@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashLibraryComponent implements OnInit {
 
+  changes: boolean = false;
+
   constructor() { }
 
   ngOnInit() {
