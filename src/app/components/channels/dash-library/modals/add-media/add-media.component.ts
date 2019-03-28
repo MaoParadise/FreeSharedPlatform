@@ -20,7 +20,7 @@ export class AddMediaComponent implements OnInit {
     totalEpisodes: 0,
     studio: '',
     miniature: '',
-    releaseDate: new Date(),
+    releaseDate: new Date(''),
     statusMedia: 0,
     references: []
   };
@@ -67,7 +67,6 @@ export class AddMediaComponent implements OnInit {
         this._mediaService.getMediaLike(this.media.title).subscribe(
           res =>{
            this.dataSearch = res;
-           console.log(this.dataSearch);
            this.showDropDown = true;
        }, 
          err => {
@@ -98,5 +97,41 @@ export class AddMediaComponent implements OnInit {
     this.hideErrorAlert();
   }
   /* #endregion */ 
+
+  /* #region images process area */
+
+  selectedFile: File = null;
+  urlSelectedFile: any = '/assets/default/no-miniature.jpg';
+
+  onFileSelected(event){
+    this.selectedFile = <File>event.target.files[0];
+    var file = event.dataTransfer ? event.dataTransfer.files[0] : event.target.files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(this.selectedFile);
+    reader.onload = this._handleReaderLoaded.bind(this);
+  }
+
+  _handleReaderLoaded(event) {
+    var reader = event.target;
+    this.urlSelectedFile = reader.result;
+  }
+ 
+  /* #endregion */
+
+  /* #region add Media Region */
+
+  formMedia = new FormData();
+
+  saveMedia(){
+    this.formMedia.append('image', this.selectedFile, this.selectedFile.name)
+    this.formMedia.append('title', this.media.title);
+    this.formMedia.append('totalEpisodes',  this.media.totalEpisodes.toString());
+    this.formMedia.append('description', this.media.description);
+    this.formMedia.append('studio', this.media.studio);
+    this.formMedia.append('releaseDate', this.media.releaseDate.toDateString+'');
+    console.log(this.media)
+  }
+
+  /* #endregion */
 
 }

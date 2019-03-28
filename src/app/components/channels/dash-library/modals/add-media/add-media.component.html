@@ -34,25 +34,38 @@
             <div class="form-group" >
               <h4> titulo </h4>
               <input class="form-control form-search" type="search" [(ngModel)]="this.media.title" name="searchMedia" (click)="toggleDropDown()"  (input)="onChangeSearch()" autocomplete="off"> 
-              <br>
-              <h4> episodeos totales </h4>
-              <input class="form-control" type="number" [(ngModel)]="this.media.totalEpisodes" name="totalEpisodes"> 
               <div (clickOutside)="onClickedOutside()" *ngIf="showDropDown" class="state-container-dropdown">
-                <div> 
-                  <div (click)="sendMedia(option)" class="state" *ngFor="let option of dataSearch">
-                    <a >{{ option.title }}</a>
+                  <div> 
+                    <div (click)="sendMedia(option)" class="state" *ngFor="let option of dataSearch">
+                      <a >{{ option.title }}</a>
+                    </div>
                   </div>
                 </div>
+              <br>
+              <div class="row">
+                <div class="col-sm-12">
+                  <input class="form-control" type="file" (change)="onFileSelected($event)">
+                </div>
+                <div class="col-sm-12">
+                  <img class="img-fluid img-preview" [src]="urlSelectedFile" >
+                  <small class="form-text text-muted text-justify">
+                      Recuerde que la imagen no debe tener un peso mayor a 1 MB, sin importar las dimensiones originales la imagen será reajustada a un tamaño de 640 x 400, con el fin de evitar deformidades intente que las proporciones sean relacionales al tamaño final, el formato gif es aceptable mientras cumpla con las condiciones. 
+                  </small>
+                </div>
               </div>
+              <h4> EPISODIOS totales </h4>
+              <input class="form-control" type="number" [(ngModel)]="this.media.totalEpisodes" name="totalEpisodes"> 
               <br>
               <h4> Descripcion </h4>
-              <textarea class="form-control" name="" cols="30" rows="10"></textarea>
+              <textarea class="form-control" [(ngModel)]="this.media.description" name="description" cols="30" rows="10"></textarea>
               <br>
               <h4> Estudio </h4>
               <input class="form-control" type="text" [(ngModel)]="this.media.studio" name="studio"> 
               <br>
               <h4> Fecha estreno </h4>
-              <input class="form-control" type="date" name="" id="">
+              <input class="form-control" [(ngModel)]="this.media.releaseDate" type="date" name="releaseDate">
+              <br>
+              <button class="btn btn-primary" (click)="saveMedia()"> Guardar </button>
             </div>
 
 
