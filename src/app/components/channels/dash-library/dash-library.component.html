@@ -9,7 +9,8 @@
     </div>
 </div>
 <div class="row">
-  <div class="col-sm-6 col-md-4">
+
+  <div *ngFor="let library of dataMedia ; let i=index" class="col-sm-6 col-md-4">
         <div class="cardHover">
           <div class="icons">
             <i  data-toggle="modal" data-target="#modalINF"  class="fas fa-cogs" title="editar información"></i> | 
@@ -20,71 +21,16 @@
             <i *ngIf="changes == true" class="fas fa-exclamation-triangle"></i>
           </div>
         <div class="card">
-          <img class="card-img-top img-fluid"  src="https://res.cloudinary.com/dm5wlpq7j/image/upload/v1550087388/Tate_no_Yuusha_no_Nariagari_Sub-Espa%C3%B1ol_MEGA-MF-GD_HD-FullHD_Online_SoAnimesiteHD2.jpg" alt="Card image cap">
+          <img class="card-img-top img-fluid" [src]="library.miniature == '' ? '/assets/default/no-miniature.jpg' : library.miniature" alt="Card image cap">
           <div class="card-body">
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="card-text"> {{ library.title }} </p>
           <button class="btn btn-light"> <i class="fas fa-save"></i> Guardar </button>
           </div>
         </div>
         </div>
   </div>
-  <div class="col-sm-6 col-md-4">
-      <div class="cardHover">
-        <div class="icons">
-          <i  data-toggle="modal" data-target="#modalINF"  class="fas fa-cogs" title="editar información"></i> | 
-          <i  data-toggle="modal" data-target="#modalEMP"  class="fas fa-edit" title="editar video"></i>
-        </div>
-        <div class="icons-confirmation">
-          <i *ngIf="changes == false" class="fas fa-check-circle"></i>
-          <i *ngIf="changes == true" class="fas fa-exclamation-triangle"></i>
-        </div>
-      <div class="card">
-        <img class="card-img-top img-fluid"  src="https://res.cloudinary.com/dm5wlpq7j/image/upload/v1550087388/Tate_no_Yuusha_no_Nariagari_Sub-Espa%C3%B1ol_MEGA-MF-GD_HD-FullHD_Online_SoAnimesiteHD2.jpg" alt="Card image cap">
-        <div class="card-body">
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <button class="btn btn-light"> <i class="fas fa-save"></i> Guardar </button>
-        </div>
-      </div>
-      </div>
-  </div>
-  <div class="col-sm-6 col-md-4">
-      <div class="cardHover">
-        <div class="icons">
-          <i  data-toggle="modal" data-target="#modalINF"  class="fas fa-cogs" title="editar información"></i> | 
-          <i  data-toggle="modal" data-target="#modalEMP"  class="fas fa-edit" title="editar video"></i>
-        </div>
-        <div class="icons-confirmation">
-          <i *ngIf="changes == false" class="fas fa-check-circle"></i>
-          <i *ngIf="changes == true" class="fas fa-exclamation-triangle"></i>
-        </div>
-      <div class="card">
-        <img class="card-img-top img-fluid"  src="https://res.cloudinary.com/dm5wlpq7j/image/upload/v1550087388/Tate_no_Yuusha_no_Nariagari_Sub-Espa%C3%B1ol_MEGA-MF-GD_HD-FullHD_Online_SoAnimesiteHD2.jpg" alt="Card image cap">
-        <div class="card-body">
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <button class="btn btn-light"> <i class="fas fa-save"></i> Guardar </button>
-        </div>
-      </div>
-      </div>
-  </div>
-  <div class="col-sm-6 col-md-4">
-      <div class="cardHover">
-        <div class="icons">
-          <i  data-toggle="modal" data-target="#modalINF"  class="fas fa-cogs" title="editar información"></i> | 
-          <i  data-toggle="modal" data-target="#modalEMP"  class="fas fa-edit" title="editar video"></i>
-        </div>
-        <div class="icons-confirmation">
-          <i *ngIf="changes == false" class="fas fa-check-circle"></i>
-          <i *ngIf="changes == true" class="fas fa-exclamation-triangle"></i>
-        </div>
-      <div class="card">
-        <img class="card-img-top img-fluid"  src="https://res.cloudinary.com/dm5wlpq7j/image/upload/v1550087388/Tate_no_Yuusha_no_Nariagari_Sub-Espa%C3%B1ol_MEGA-MF-GD_HD-FullHD_Online_SoAnimesiteHD2.jpg" alt="Card image cap">
-        <div class="card-body">
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <button class="btn btn-light"> <i class="fas fa-save"></i> Guardar </button>
-        </div>
-      </div>
-      </div>
-  </div>
+
+
 </div>
 
 

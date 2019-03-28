@@ -19,4 +19,13 @@ export class MediaService {
       title: query
     });
   }
+
+  getMediaUser(){
+    return this.http.get(`${this.API_URI}/media/find/id`);
+  }
+
+  saveMedia(form: FormData){
+    return this.http.post(`${this.API_URI}/media/`, form)
+  }
+
 }

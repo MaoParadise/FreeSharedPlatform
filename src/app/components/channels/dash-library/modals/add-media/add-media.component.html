@@ -26,11 +26,16 @@
                       <span aria-hidden="true">&times;</span>
                   </button>
             </div>
+            <div class="alert alert-danger fade show" role="alert">
+                <button (click)="hideErrorAlert()" type="button" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <p>{{ messageError }}</p>
+            </div>
             </div>
         </div>
+
         <div class="modal-body">
-
-
             <div class="form-group" >
               <h4> titulo </h4>
               <input class="form-control form-search" type="search" [(ngModel)]="this.media.title" name="searchMedia" (click)="toggleDropDown()"  (input)="onChangeSearch()" autocomplete="off"> 
@@ -56,7 +61,7 @@
               <h4> EPISODIOS totales </h4>
               <input class="form-control" type="number" [(ngModel)]="this.media.totalEpisodes" name="totalEpisodes"> 
               <br>
-              <h4> Descripcion </h4>
+              <h4> Descripción </h4>
               <textarea class="form-control" [(ngModel)]="this.media.description" name="description" cols="30" rows="10"></textarea>
               <br>
               <h4> Estudio </h4>
@@ -65,11 +70,7 @@
               <h4> Fecha estreno </h4>
               <input class="form-control" [(ngModel)]="this.media.releaseDate" type="date" name="releaseDate">
               <br>
-              <button class="btn btn-primary" (click)="saveMedia()"> Guardar </button>
-            </div>
-
-
-            <div class="alert alert-danger fade show" role="alert">
+              <button class="btn btn-light float-right" (click)="saveMedia()"> <i class="fas fa-save"></i> Guardar </button>
             </div>
         </div>
       </div>

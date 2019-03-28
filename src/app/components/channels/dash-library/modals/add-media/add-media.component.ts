@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Media } from 'src/app/models/media/Media';
 import { MediaService } from 'src/app/services/media/media.service';
+import { isUndefined } from 'util';
+
 
 @Component({
   selector: 'app-add-media',
@@ -20,7 +22,7 @@ export class AddMediaComponent implements OnInit {
     totalEpisodes: 0,
     studio: '',
     miniature: '',
-    releaseDate: new Date(''),
+    releaseDate: null,
     statusMedia: 0,
     references: []
   };
@@ -55,6 +57,8 @@ export class AddMediaComponent implements OnInit {
   hideSuccessAlert(){
     document.querySelector('.alert-success').setAttribute('style',`display: none`);
   }
+
+
   /* #endregion */  
 
   /* #region title-search area */ 
@@ -121,17 +125,62 @@ export class AddMediaComponent implements OnInit {
   /* #region add Media Region */
 
   formMedia = new FormData();
+  errorData: boolean = false;
 
   saveMedia(){
-    this.formMedia.append('image', this.selectedFile, this.selectedFile.name)
+    if(this.selectedFile === null){
+      console.log(' is null');
+    }else{
+      if(this.selectedFile.size > 1048576){ // max size 1 MB
+        console.log(' is more size of the permitive')
+      }else{
+        if(this.selectedFile.type === 'image/jpeg' || this.selectedFile.type === 'image/gif' || this.selectedFile.type === 'image/png' || this.selectedFile.type === 'image/jpg'){
+          this.formMedia.append('image', this.selectedFile, this.selectedFile.name);
+        }else{
+          console.log(' is not a correct format')
+        }
+      }
+    }
+    if( this.media.title == '' || 
+        this.media.title == null || 
+        this.media.totalEpisodes <= 0 || 
+        this.media.description == '' || 
+        this.media.description == null ||
+        this.media.studio == '' || 
+        this.media.studio == null ||
+        this.media.releaseDate == null
+    ){
+      this.setErrorMessage('Algunos de los campos obligatorios no están rellenados o no cumplen con las especificaciones para realizar el proceso.');
+      this.showErrorAlert();
+      this.hideSuccessAlert();
+    }else{
+      this.fillFormData();
+      this._mediaService.saveMedia(this.formMedia)
+      .subscribe(
+        res => {
+          this.setSuccessMessage(`Se ha creado exitosamente el título, ahora puede encontrarlo dentro de su librería de medios.`+
+          `Ha completado exitosamente el paso 1, puede seguir al paso dos y agregar referencias a su título de forma que pueda facilitar la búsqueda de este a los demás usuarios y al propio algoritmo del sitio o puede cerrar la ventana y agregar las referencias en otra ocasión por medio del icono “editar información”`+
+          ``);
+          this.showSuccessAlert();
+          this.hideErrorAlert();
+        },
+        err => {
+          console.log(err) 
+        }
+      ); 
+    }
+  }
+
+  fillFormData(){
     this.formMedia.append('title', this.media.title);
     this.formMedia.append('totalEpisodes',  this.media.totalEpisodes.toString());
     this.formMedia.append('description', this.media.description);
     this.formMedia.append('studio', this.media.studio);
-    this.formMedia.append('releaseDate', this.media.releaseDate.toDateString+'');
-    console.log(this.media)
+    this.formMedia.append('releaseDate', this.media.releaseDate.toString());
   }
 
   /* #endregion */
 
 }
+
+
