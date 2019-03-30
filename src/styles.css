@@ -69,3 +69,37 @@ a:hover{
   .mat-dialog-container {
     box-shadow: none;
   }
+
+
+  .ngx-pagination .current {
+    padding: 0.1875rem 0.625rem;
+    background: rgb(245, 245, 245) !important;
+    border: #1a1a1a 1px solid !important;
+    color: #0a0a0a !important;
+    cursor: default;
+  }
+  
+  
+  .ngx-pagination {
+    margin-left: 0! important;
+    width: 100% !important;
+    text-align: center;
+    margin-bottom: 1rem !important;
+  }
+  
+  .ngx-pagination .disabled {
+    border: #ccc 1px solid;
+    padding: 0.1875rem 0.625rem;
+    color: #cacaca;
+    cursor: default;
+  }
+
+  .ngx-pagination a, .ngx-pagination button {
+    background: #1a1a1a;
+    color: #0a0a0a;
+    display: block;
+    padding: 0.1875rem 0.625rem;
+    border-radius: 0;
+  }
+  
+  

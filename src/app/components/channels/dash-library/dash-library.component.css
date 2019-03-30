@@ -38,11 +38,11 @@
 .icons{
     color:  #e9edf1;
     position: absolute;
-    margin-left: 8px; 
+    margin-left: 25px;
     font-size: 20px;
     z-index: 2;
     text-align: center;
-    width: 90%;
+    width: 75%;
     cursor: pointer;
 }
 
@@ -74,11 +74,6 @@
     color: #1a1a1a;
     text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
 }
-
-.back{
-    font-size: 28px;
-}
-
 .information-media{
     background: #1a1a1a;
     color: #919aa1 !important;
@@ -87,6 +82,12 @@
     box-shadow: 2px 2px 26px -6px rgba(0,0,0,0.75);
 }
 
-h4{
+.information-media h4{
     color: #919aa1 !important;
 }
+
+.references{
+    margin-bottom: 10px !important;
+}
+
+

@@ -10,15 +10,15 @@
 </div>
 <div class="row" *ngIf="mediaOption == 1">
 
-  <div *ngFor="let library of dataMedia ; let i=index" class="col-sm-6 col-md-4">
+  <div *ngFor="let library of dataMedia | paginate: { itemsPerPage: 6, currentPage: actualPage }; let i=index" class="col-sm-6 col-md-4">
         <div class="cardHover">
           <div class="icons">
             <i (click)="loadInformation(library)" data-toggle="modal" data-target="#modalINF"  class="fas fa-cogs" title="editar información"></i> | 
             <i  data-toggle="modal" data-target="#modalEMP"  class="fas fa-edit" title="editar video"></i>
           </div>
           <div class="icons-confirmation">
-            <i *ngIf="changes == false" class="fas fa-check-circle"></i>
-            <i *ngIf="changes == true" class="fas fa-exclamation-triangle"></i>
+            <i *ngIf="library.statusMedia == 200" class="fas fa-check-circle" title="Todos los cambios se encuentran guardados en el servidor."></i>
+            <i *ngIf="library.statusMedia == 304" class="fas fa-exclamation-triangle" title="Los cambios aún no se han guardados en el servidor por lo que solo son visibles para usted."></i>
           </div>
         <div class="card">
           <img class="card-img-top img-fluid" [src]="library.miniature == '' ? '/assets/default/no-miniature.jpg' : library.miniature" alt="Card image cap">
@@ -29,17 +29,66 @@
         </div>
         </div>
   </div>
-
-
+  <div class="col-md-12">
+      <pagination-controls 
+          [previousLabel]="labels.previousLabel"
+          [nextLabel]="labels.nextLabel"
+          (pageChange)="actualPage = $event">
+        </pagination-controls> 
+    </div>
 </div>
 
-<div class="row information-media mb-4 m-0 py-4" *ngIf="mediaOption == 2">
+<div class="row mx-xs-1 mr-sm-0" *ngIf="mediaOption == 2">
   <div class="col-md-5 col-sm-6">
-    <!-- <button (click)="backLibrary()" class="btn btn-light btn-back float-left mb-2"><i class="back fas fa-arrow-circle-left "></i> Atrás </button> -->
-    <img class="card-img-top img-fluid img-thumbnail" [src]="singleMedia.miniature == '' ? '/assets/default/no-miniature.jpg' : singleMedia.miniature" alt="Card image cap">
+    <div class="cardHover">
+      <div class="icons">
+        <i  data-toggle="modal" data-target="#modalINF"  class="fas fa-cogs" title="editar información"></i> | 
+        <i  data-toggle="modal" data-target="#modalEMP"  class="fas fa-edit" title="editar video"></i>
+      </div>
+    <div class="card references">
+      <img class="card-img-top img-fluid" [src]="singleMedia.miniature == '' ? '/assets/default/no-miniature.jpg' : singleMedia.miniature" alt="Card image cap">
+      <div class="card-body">
+      <p class="card-text"> {{ singleMedia.title }} </p>
+      <button (click)="backLibrary()" class="btn btn-light"><i class="back fas fa-arrow-circle-left "></i> Atrás </button>
+      <button (click)="localSave()" class="btn btn-light"> <i class="fas fa-save"></i> Guardar Cambios </button>
+      </div>
+    </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <form>
+                <div class="input-group">
+                  <input [(ngModel)]="references" class="form-control" type="text" name="preferences">
+                  <button class="btn btn-warning" (click)="addNoneData(this._general.processRepeatSimple(this._general.separateAndReplaceAndMinus(references)))"> Agregar </button>
+                </div>
+                <div class="row">
+                  <div *ngFor="let newCategory of NonedataPush; let j=index" class="col-xs-2">
+                    <button class="btn optionNew" value="newCategory">{{ newCategory }} </button><i (click)="deleteNoneData(j)" class="delete fas fa-times-circle"></i>
+                  </div>
+                </div>
+              </form>
+        </div>
+      </div>
+
   </div>
-  <div class="col-md-7 col-sm-6 ">
-    <h4> TITULO </h4>
+  <div class="col-md-7 col-sm-6 pb-2 mb-2 information-media">
+      <div class="form-group" >
+        <br>
+        <h4> TITULO </h4>
+        <input class="form-control form-search" type="search" [(ngModel)]="singleMedia.title" name="searchMedia" (click)="toggleDropDown()"  (input)="onChangeSearch()" autocomplete="off"> 
+        <br>
+        <h4> EPISODIOS totales * </h4>
+        <input class="form-control" type="number" [(ngModel)]="singleMedia.totalEpisodes" name="totalEpisodes"> 
+        <br>
+        <h4> Descripción * </h4>
+        <textarea class="form-control" [(ngModel)]="singleMedia.description" name="description" cols="30" rows="10"></textarea>
+        <br>
+        <h4> Estudio *</h4>
+        <input class="form-control" type="text" [(ngModel)]="singleMedia.studio" name="studio"> 
+        <br>
+        <h4> Fecha estreno *</h4>
+        <input class="form-control" [(ngModel)]="singleMedia.releaseDate" type="date" name="releaseDate">
+      </div>
   </div>
 </div>
 

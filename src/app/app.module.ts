@@ -10,7 +10,9 @@ import { TokenInterceptorService } from './services/token/token-interceptor.serv
 
 
 //External
+import {NgxPaginationModule} from 'ngx-pagination';
 import { ClickOutsideModule } from 'ng4-click-outside';
+
 
 //Angular Material
 import { MaterialModule } from './tools/materia';
@@ -67,7 +69,8 @@ import { EditChapterComponent } from './components/channels/dash-library/modals/
     FormsModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ClickOutsideModule
+    ClickOutsideModule,
+    NgxPaginationModule
   ],
   entryComponents:[
     DefaultDialogComponent,
