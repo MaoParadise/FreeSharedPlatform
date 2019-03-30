@@ -11,8 +11,8 @@
             <div class="col-md-12">
               <ul class="progressbar">
                 <li id="step1" class="active">paso 1</li>
-                <li id="step2">paso 2</li>
-                <li id="step3">paso 3</li>
+                <li id="step2" >paso 2</li>
+                <li id="step3"> Finalizado  </li>
               </ul>
             </div>
           </div>
@@ -35,9 +35,9 @@
             </div>
         </div>
 
-        <div class="modal-body">
+        <div *ngIf="this._mediaView.getStep() == 1" class="modal-body">
             <div class="form-group" >
-              <h4> titulo </h4>
+              <h4> titulo * </h4>
               <input class="form-control form-search" type="search" [(ngModel)]="this.media.title" name="searchMedia" (click)="toggleDropDown()"  (input)="onChangeSearch()" autocomplete="off"> 
               <div (clickOutside)="onClickedOutside()" *ngIf="showDropDown" class="state-container-dropdown">
                   <div> 
@@ -58,21 +58,41 @@
                   </small>
                 </div>
               </div>
-              <h4> EPISODIOS totales </h4>
+              <h4> EPISODIOS totales * </h4>
               <input class="form-control" type="number" [(ngModel)]="this.media.totalEpisodes" name="totalEpisodes"> 
               <br>
-              <h4> Descripción </h4>
+              <h4> Descripción * </h4>
               <textarea class="form-control" [(ngModel)]="this.media.description" name="description" cols="30" rows="10"></textarea>
               <br>
-              <h4> Estudio </h4>
+              <h4> Estudio *</h4>
               <input class="form-control" type="text" [(ngModel)]="this.media.studio" name="studio"> 
               <br>
-              <h4> Fecha estreno </h4>
+              <h4> Fecha estreno *</h4>
               <input class="form-control" [(ngModel)]="this.media.releaseDate" type="date" name="releaseDate">
               <br>
               <button class="btn btn-light float-right" (click)="saveMedia()"> <i class="fas fa-save"></i> Guardar </button>
             </div>
         </div>
+
+        <div *ngIf="this._mediaView.getStep() == 2" class="modal-body">
+          <div class="form-group" >
+            <h4> Referencias </h4>
+            <form>
+              <div class="input-group">
+                <input [(ngModel)]="references" class="form-control" type="text" name="preferences">
+                <button class="btn btn-warning" (click)="addNoneData(this._general.processRepeatSimple(this._general.separateAndReplaceAndMinus(references)))"> Agregar </button>
+              </div>
+              <div class="row">
+                <div *ngFor="let newCategory of NonedataPush; let j=index" class="col-xs-2">
+                  <button class="btn optionNew" value="newCategory">{{ newCategory }} </button><i (click)="deleteNoneData(j)" class="delete fas fa-times-circle"></i>
+                </div>
+              </div>
+            </form>
+            <br>
+            <button class="btn btn-light float-right" (click)="saveReferences()"> <i class="fas fa-save"></i> Guardar referencias </button>
+          </div>
+        </div>
+
       </div>
     </div>
 </div>

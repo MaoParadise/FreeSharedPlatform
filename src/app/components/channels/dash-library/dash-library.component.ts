@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MediaService } from 'src/app/services/media/media.service';
+import { MediaViewService } from 'src/app/services/media/media-view.service';
 
 @Component({
   selector: 'app-dash-library',
@@ -12,7 +13,8 @@ export class DashLibraryComponent implements OnInit {
   dataMedia: any;
 
   constructor(
-    private _mediaService: MediaService
+    private _mediaService: MediaService,
+    public _mediaView: MediaViewService
   ) { }
 
   ngOnInit() {
@@ -24,6 +26,18 @@ export class DashLibraryComponent implements OnInit {
         console.log(err);
       }
     )
+  }
+
+  addMedia(){
+    this._mediaView.setStep(1);
+    if(this._mediaView.getStep() == 1){
+      document.getElementById("step2").classList.remove("active");
+      document.getElementById("step3").classList.remove("active");
+    }else if(this._mediaView.getStep() == 2){
+      document.getElementById("step3").classList.remove("active");
+    }
+    document.querySelector('.alert-danger').setAttribute('style',`display: none`);
+    document.querySelector('.alert-success').setAttribute('style',`display: none`);
   }
 
 }

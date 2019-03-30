@@ -173,3 +173,10 @@
     width: 320px;
     height: 200px;
 }
+
+.optionNew{
+    cursor: default;
+}
+.delete{
+    cursor: pointer;
+}

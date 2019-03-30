@@ -12,11 +12,17 @@
           
         </div>
         <div class="modal-body">
-            <input class="form-control" type="file" (change)="onFileSelected($event)">
-            <button class="btn btn-primary" (click)="onUpload()"> Upload </button>
-            <div class="alert alert-danger fade show" role="alert">
-                
+          <form>
+            <div class="input-group">
+              <input [(ngModel)]="references" class="form-control" type="text" name="preferences">
+              <button class="btn btn-warning" (click)="addNoneData(this._general.processRepeatSimple(this._general.separateAndReplaceAndMinus(references)))"> Agregar </button>
             </div>
+            <div class="row">
+              <div *ngFor="let newCategory of NonedataPush; let j=index" class="col-xs-2">
+                <button class="btn optionNew" value="newCategory">{{ newCategory.reference }} </button><i (click)="deleteNoneData(j)" class="delete fas fa-times-circle"></i>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>

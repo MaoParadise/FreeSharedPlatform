@@ -156,3 +156,10 @@
   .embed{
       border: 1px solid #fff;
   }
+
+  .optionNew{
+      cursor: default;
+  }
+  .delete{
+      cursor: pointer;
+  }

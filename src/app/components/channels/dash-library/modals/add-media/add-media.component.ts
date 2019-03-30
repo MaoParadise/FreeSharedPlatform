@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Media } from 'src/app/models/media/Media';
 import { MediaService } from 'src/app/services/media/media.service';
 import { isUndefined } from 'util';
+import { MediaViewService } from 'src/app/services/media/media-view.service';
+import { GeneralService } from 'src/app/services/configuration/general.service';
 
 
 @Component({
@@ -29,7 +31,9 @@ export class AddMediaComponent implements OnInit {
 
 
   constructor(
-    private _mediaService: MediaService
+    private _mediaService: MediaService,
+    public _mediaView: MediaViewService,
+    public _general: GeneralService
   ) { }
 
   ngOnInit() {
@@ -128,19 +132,6 @@ export class AddMediaComponent implements OnInit {
   errorData: boolean = false;
 
   saveMedia(){
-    if(this.selectedFile === null){
-      console.log(' is null');
-    }else{
-      if(this.selectedFile.size > 1048576){ // max size 1 MB
-        console.log(' is more size of the permitive')
-      }else{
-        if(this.selectedFile.type === 'image/jpeg' || this.selectedFile.type === 'image/gif' || this.selectedFile.type === 'image/png' || this.selectedFile.type === 'image/jpg'){
-          this.formMedia.append('image', this.selectedFile, this.selectedFile.name);
-        }else{
-          console.log(' is not a correct format')
-        }
-      }
-    }
     if( this.media.title == '' || 
         this.media.title == null || 
         this.media.totalEpisodes <= 0 || 
@@ -154,20 +145,42 @@ export class AddMediaComponent implements OnInit {
       this.showErrorAlert();
       this.hideSuccessAlert();
     }else{
+      if(this.selectedFile === null){
+        console.log(' is null');
+      }else{
+        if(this.selectedFile.size > 1048576){ // max size 1 MB
+          console.log(' is more size of the permitive')
+        }else{
+          if(this.selectedFile.type === 'image/jpeg' || this.selectedFile.type === 'image/gif' || this.selectedFile.type === 'image/png' || this.selectedFile.type === 'image/jpg'){
+            this.formMedia.append('image', this.selectedFile, this.selectedFile.name);
+          }else{
+            console.log(' is not a correct format')
+          }
+        }
+      }
       this.fillFormData();
       this._mediaService.saveMedia(this.formMedia)
       .subscribe(
         res => {
-          this.setSuccessMessage(`Se ha creado exitosamente el título, ahora puede encontrarlo dentro de su librería de medios.`+
-          `Ha completado exitosamente el paso 1, puede seguir al paso dos y agregar referencias a su título de forma que pueda facilitar la búsqueda de este a los demás usuarios y al propio algoritmo del sitio o puede cerrar la ventana y agregar las referencias en otra ocasión por medio del icono “editar información”`+
+          this.setSuccessMessage(`Se ha creado exitosamente el título, ahora puede encontrarlo dentro de su librería de medios. \n`+
+          ` Ha completado exitosamente el paso 1, puede seguir al paso dos y agregar referencias a su título de forma que pueda facilitar la búsqueda de este a los demás usuarios y al propio algoritmo del sitio o puede cerrar la ventana y agregar las referencias en otra ocasión por medio del icono “editar información”`+
           ``);
           this.showSuccessAlert();
           this.hideErrorAlert();
+          document.getElementById("step2").classList.add('active');
+          this._mediaView.setStep(2);
+          this.resetFormData();
+          this.data = res;
+          this._idMedia = this.data._id;
+          console.log(this._idMedia);
         },
         err => {
-          console.log(err) 
+          this.setErrorMessage('Ha ocurrido un error inesperado de parte del servidor, cierre la ventana y vuelva a intentarlo, si el problema persiste inténtelo mas tarde.');
+          this.showErrorAlert();
+          this.hideSuccessAlert();
+          this._mediaView.setStep(0); 
         }
-      ); 
+      );  
     }
   }
 
@@ -179,7 +192,82 @@ export class AddMediaComponent implements OnInit {
     this.formMedia.append('releaseDate', this.media.releaseDate.toString());
   }
 
+  resetFormData(){
+    this.media.title = '';
+    this.media.totalEpisodes = 0;
+    this.media.description = '';
+    this.media.studio = '';
+    this.media.releaseDate = null;
+    this.urlSelectedFile = '/assets/default/no-miniature.jpg';
+    this.formMedia = new FormData();
+    if(this._mediaView.getStep() == 1){
+      document.getElementById("step2").classList.remove("active");
+      document.getElementById("step2").classList.remove("active");
+    }else if(this._mediaView.getStep() == 2){
+      document.getElementById("step3").classList.remove("active");
+    }
+    this.NonedataPush = [];
+  }
+
+
+
   /* #endregion */
+
+  /* #region references region */
+  _idMedia: string;
+  references: string;
+  NonedataPush: any = [];
+  InvalidDataPush: any = [];
+  maxData: number = 0;
+
+  addNoneData(noneData : any){
+    for(let i = 0; i < noneData.length; i++){
+      if(this._general.ItsPresent(this.NonedataPush, noneData[i])){
+        
+      }else{
+        if(noneData[i].length > 3){
+          this.NonedataPush.push(
+            noneData[i]
+          )
+          this.maxData++;
+        }else{
+          this.InvalidDataPush.push(
+             noneData[i]
+          )
+          this.maxData++; 
+        }
+      }
+    }
+    console.log(this.NonedataPush);
+  }
+  deleteNoneData(index: number){
+    this.NonedataPush.splice(index, 1);
+    this.maxData--;
+  }
+
+  saveReferences(){
+    this._mediaService.pushReferences(this._idMedia, this.NonedataPush)
+    .subscribe(
+      res => {
+        this.setSuccessMessage(`Proceso completado, desde ahora puede empezar a agregar capítulos y versiones a los títulos de su librería, intente siempre mantenerlos actualizados y evitar subir capítulos o títulos que no se han estrenados aún, (se hará una excepción para los capítulos y títulos a estrenarse a 1 semana a futuro, en caso de series y un mes a futuro, en caso de películas).`);
+          this.showSuccessAlert();
+          this.hideErrorAlert();
+          document.getElementById("step3").classList.add('active');
+          this._mediaView.setStep(3);
+          this.resetFormData();
+      },
+      err => {
+        this.setErrorMessage('Ha ocurrido un error inesperado de parte del servidor, cierre la ventana y vuelva a intentarlo, si el problema persiste inténtelo mas tarde.');
+        this.showErrorAlert();
+        this.hideSuccessAlert();
+        this._mediaView.setStep(0); 
+      }
+    )
+  }
+
+  /* #endregion */
+
+
 
 }
 
