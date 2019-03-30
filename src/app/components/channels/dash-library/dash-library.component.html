@@ -8,12 +8,12 @@
         <button class="btn btn-light"> <i class="fas fa-search"></i> </button>
     </div>
 </div>
-<div class="row">
+<div class="row" *ngIf="mediaOption == 1">
 
   <div *ngFor="let library of dataMedia ; let i=index" class="col-sm-6 col-md-4">
         <div class="cardHover">
           <div class="icons">
-            <i  data-toggle="modal" data-target="#modalINF"  class="fas fa-cogs" title="editar información"></i> | 
+            <i (click)="loadInformation(library)" data-toggle="modal" data-target="#modalINF"  class="fas fa-cogs" title="editar información"></i> | 
             <i  data-toggle="modal" data-target="#modalEMP"  class="fas fa-edit" title="editar video"></i>
           </div>
           <div class="icons-confirmation">
@@ -31,6 +31,16 @@
   </div>
 
 
+</div>
+
+<div class="row information-media mb-4 m-0 py-4" *ngIf="mediaOption == 2">
+  <div class="col-md-5 col-sm-6">
+    <!-- <button (click)="backLibrary()" class="btn btn-light btn-back float-left mb-2"><i class="back fas fa-arrow-circle-left "></i> Atrás </button> -->
+    <img class="card-img-top img-fluid img-thumbnail" [src]="singleMedia.miniature == '' ? '/assets/default/no-miniature.jpg' : singleMedia.miniature" alt="Card image cap">
+  </div>
+  <div class="col-md-7 col-sm-6 ">
+    <h4> TITULO </h4>
+  </div>
 </div>
 
 

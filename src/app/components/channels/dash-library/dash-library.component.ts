@@ -10,7 +10,9 @@ import { MediaViewService } from 'src/app/services/media/media-view.service';
 export class DashLibraryComponent implements OnInit {
 
   changes: boolean = false;
+  mediaOption: number = 1;
   dataMedia: any;
+  singleMedia: any;
 
   constructor(
     private _mediaService: MediaService,
@@ -38,6 +40,15 @@ export class DashLibraryComponent implements OnInit {
     }
     document.querySelector('.alert-danger').setAttribute('style',`display: none`);
     document.querySelector('.alert-success').setAttribute('style',`display: none`);
+  }
+
+  loadInformation(media: any){
+    this.singleMedia = media;
+    this.mediaOption = 2;
+  }
+
+  backLibrary(){
+    this.mediaOption = 1;
   }
 
 }
