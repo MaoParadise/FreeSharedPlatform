@@ -17,14 +17,15 @@
             <i  data-toggle="modal" data-target="#modalEMP"  class="fas fa-edit" title="editar video"></i>
           </div>
           <div class="icons-confirmation">
-            <i *ngIf="library.statusMedia == 200" class="fas fa-check-circle" title="Todos los cambios se encuentran guardados en el servidor."></i>
+            <i *ngIf="library.statusMedia == 200" class="fas fa-check-circle" title="Todos los cambios se encuentran guardados en el servidor."></i> 
+            <i *ngIf="library.statusMedia == 100" class="fas fa-circle-notch" title=""></i> 
             <i *ngIf="library.statusMedia == 304" class="fas fa-exclamation-triangle" title="Los cambios aún no se han guardados en el servidor por lo que solo son visibles para usted."></i>
           </div>
-        <div class="card">
+        <div class="card"> 
           <img class="card-img-top img-fluid" [src]="library.miniature == '' ? '/assets/default/no-miniature.jpg' : library.miniature" alt="Card image cap">
           <div class="card-body">
           <p class="card-text"> {{ library.title }} </p>
-          <button class="btn btn-light"> <i class="fas fa-save"></i> Guardar </button>
+          <button (click)="saveChangeOnServer(library)" class="btn btn-light"> <i class="fas fa-save"></i> Guardar </button>
           </div>
         </div>
         </div>
@@ -49,8 +50,7 @@
       <img class="card-img-top img-fluid" [src]="singleMedia.miniature == '' ? '/assets/default/no-miniature.jpg' : singleMedia.miniature" alt="Card image cap">
       <div class="card-body">
       <p class="card-text"> {{ singleMedia.title }} </p>
-      <button (click)="backLibrary()" class="btn btn-light"><i class="back fas fa-arrow-circle-left "></i> Atrás </button>
-      <button (click)="localSave()" class="btn btn-light"> <i class="fas fa-save"></i> Guardar Cambios </button>
+      <button (click)="backLibrary()" class="btn btn-light float-left"><i class="back fas fa-arrow-circle-left "></i> Atrás </button>
       </div>
     </div>
     </div>
@@ -76,6 +76,13 @@
         <br>
         <h4> TITULO </h4>
         <input class="form-control form-search" type="search" [(ngModel)]="singleMedia.title" name="searchMedia" (click)="toggleDropDown()"  (input)="onChangeSearch()" autocomplete="off"> 
+        <div (clickOutside)="onClickedOutside()" *ngIf="showDropDown" class="state-container-dropdown">
+          <div> 
+            <div (click)="sendMedia(option)" class="state" *ngFor="let option of dataSearch">
+              <a >{{ option.title }}</a>
+            </div>
+          </div>
+        </div>
         <br>
         <h4> EPISODIOS totales * </h4>
         <input class="form-control" type="number" [(ngModel)]="singleMedia.totalEpisodes" name="totalEpisodes"> 

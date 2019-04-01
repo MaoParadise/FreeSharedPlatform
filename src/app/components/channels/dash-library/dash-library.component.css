@@ -56,13 +56,13 @@
 }
 
 .icons-confirmation .fa-check-circle{
-    color: rgba(75, 191, 115, 0.5);
-    text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+    color: rgba(75, 191, 115, 0.75);
+    text-shadow: 0 0 15px rgba(255,255,255,.75), 0 0 10px rgba(255,255,255,.75);
 }
 
 .icons-confirmation .fa-exclamation-triangle{
     color: rgba(253, 250, 63, 0.8);
-    text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+    text-shadow: 0 0 15px rgba(255,255,255,.75), 0 0 10px rgba(255,255,255,.75);
 }
 
 .form-control{
@@ -91,3 +91,50 @@
 }
 
 
+
+
+
+
+@keyframes rotate {from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}}
+@-webkit-keyframes rotate {from {-webkit-transform: rotate(0deg);}
+  to {-webkit-transform: rotate(360deg);}}
+.fa-circle-notch{
+    -webkit-animation: 3s rotate linear infinite;
+    animation: 3s rotate linear infinite;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    color: #ccc;
+    text-shadow: 0 0 15px rgba(255,255,255,.75), 0 0 10px rgba(255,255,255,.75);
+}
+
+.circle{
+    position: absolute;
+    color: #fff;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    z-index: -1;
+}
+
+.state-container-dropdown{
+    position: absolute;
+    z-index: 1;
+    width: 95%;
+    max-height: 300px;
+    background: #f6f6f6;
+    overflow-y: auto;
+}
+
+.state{
+    padding: 10px;
+}
+.state a{
+    font-family: sans-serif !important;
+    color: #1F9BCF !important;
+}
+
+.state:hover{
+    background: #c2c2c2;
+}

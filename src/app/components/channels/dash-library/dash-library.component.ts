@@ -11,12 +11,13 @@ import {NgxPaginationModule} from 'ngx-pagination';
 })
 export class DashLibraryComponent implements OnInit {
 
+  dataSearch: any;
   actualPage: number = 1;
   public labels: any = {
     previousLabel: 'Anterior',
     nextLabel: 'Siguiente',
   };
-  changes: boolean = false;
+  spinnerStatus: boolean = false;
   mediaOption: number = 1;
   dataMedia: any;
   
@@ -64,8 +65,9 @@ export class DashLibraryComponent implements OnInit {
     console.log(this.indexMedia);
   }
   backLibrary(){
-    console.log(this.dataMedia)
     this.mediaOption = 1;
+    this.singleMedia.statusMedia = 304;
+    this.singleMedia.references = this.NonedataPush
   }
 
   references: string;
@@ -101,12 +103,71 @@ export class DashLibraryComponent implements OnInit {
 
   localSave(){
     this.singleMedia.statusMedia = 304;
-    console.log(this.singleMedia);
-    console.log(this.dataMedia[this.indexMedia]);
+    this.singleMedia.references = this.NonedataPush
+    /* console.log(this.singleMedia);
+    console.log(this.dataMedia[this.indexMedia]); */
   }
 
   /* #endregion */
 
 
+  /* #region title-search area */ 
+
+    showDropDown = false;
+    dissapearDropDown:number = 0;
+  
+    onChangeSearch(){
+        if(this.singleMedia.title.length > 3){
+          this._mediaService.getMediaLike(this.singleMedia.title).subscribe(
+            res =>{
+             this.dataSearch = res;
+             this.showDropDown = true;
+         }, 
+           err => {
+              console.log(err);
+            }
+         );
+        }
+    } 
+  
+    toggleDropDown(){
+      this.showDropDown = !this.showDropDown;
+      if(this.showDropDown == false){
+        this.dissapearDropDown = 0;
+      }
+    }
+  
+    onClickedOutside() {
+      this.dissapearDropDown++;
+      if(this.dissapearDropDown > 1){
+        this.showDropDown = !this.showDropDown;
+        this.dissapearDropDown = 0;
+      }
+    }
+  
+    sendMedia(value: any){
+      this.singleMedia.title = value.title;
+      this.showDropDown = false;
+    }
+    /* #endregion */ 
+
+
+  /* #region save changes on the server */
+  
+    saveChangeOnServer(data: any){
+      data.statusMedia = 100;
+      this._mediaService.updateMedia(data)
+      .subscribe(
+        res =>{
+          data.statusMedia = 200;
+          console.log(res);
+        },
+        err =>{
+          console.log(err);
+        }
+      )
+    }
+
+  /* #endregion */
 
 }

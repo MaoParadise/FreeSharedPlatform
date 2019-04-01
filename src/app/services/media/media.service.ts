@@ -28,6 +28,10 @@ export class MediaService {
     return this.http.post(`${this.API_URI}/media/`, form)
   }
 
+  updateMedia(dataMedia: any){
+    return this.http.put(`${this.API_URI}/media/`, dataMedia)
+  }
+
   pushReferences(id: string, data: any){
     return this.http.post(`${this.API_URI}/media/push/references`, 
     {
